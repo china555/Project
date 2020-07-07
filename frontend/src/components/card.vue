@@ -2,7 +2,7 @@
   <div class="grid-container" style="margin-top:50px">
     <div>awdawd</div>
     <div>awdwd</div>
-    <div>adad</div>
+    <div>adaddaw</div>
   </div>
 </template>
 <style scoped>
