@@ -4,12 +4,10 @@
     <div></div>
     <div
       class="flex-container"
-      style="width:80%; justify-content: space-around;"
+      style="width:600px; justify-content: space-around;"
       v-if="this.$store.state.permission === 'Guest'"
     >
-      <div class="text-header-login" style="margin-right:120px;">
-        ID Number
-      </div>
+      <div class="text-header-login" style="margin-right:120px;">ID Number</div>
       <div class="fifty-percen text-header-login">Password</div>
       <input v-model="id" type="text" />
       <input v-model="password" type="password" />
@@ -18,10 +16,10 @@
     <div
       class="flex-container"
       style="width:80%; justify-content: flex-end; align-content: flex-end;"
-      v-else
+      v-else-if="this.$store.state.permission === 'User'"
     >
       <div class="flex-container" style="width:40%">
-        <img src="@/assets/user.svg" alt="" />
+        <img src="@/assets/user.svg" alt />
         <div style="margin-top:10px; margin-left:20px">Kittikorn</div>
       </div>
       <button class="btn" style="margin-right:20px">Log out</button>
@@ -29,12 +27,6 @@
   </div>
 </template>
 <style scoped>
-.btn {
-  width: 80px;
-  height: 40px;
-  border: 3px transparent;
-  border-radius: 7px;
-}
 .text-header-login {
   text-align: start;
   font-size: 19px;
@@ -63,9 +55,9 @@ export default {
   data() {
     return {
       id: "",
-      password: "",
+      password: ""
     };
   },
-  name: "navbar",
+  name: "navbar"
 };
 </script>

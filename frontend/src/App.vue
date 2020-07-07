@@ -1,7 +1,10 @@
 <template>
   <div>
     <navbar2 />
-    <card />
+    <div class="grid-container" style="margin-top:50px;">
+      <card partyName="อนาคตมืด" partyDiscription="ซื้อเรือดำน้ำ" />
+      <card partyName="อนาคตใหม่" partyDiscription="บลาๆๆๆ" />
+    </div>
   </div>
 </template>
 
@@ -20,9 +23,6 @@ body {
   font-family: "B612", sans-serif;
   box-shadow: none;
 }
-*:focus {
-  outline: none;
-}
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -31,6 +31,15 @@ body {
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
   justify-items: center;
+}
+.btn {
+  width: 80px;
+  height: 40px;
+  border: 3px transparent;
+  border-radius: 7px;
+}
+.btn:hover {
+  cursor: pointer;
 }
 </style>
 
@@ -41,7 +50,7 @@ import card from "./components/card.vue";
 export default {
   components: {
     navbar2,
-    card,
-  },
+    card
+  }
 };
 </script>

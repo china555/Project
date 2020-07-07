@@ -13,6 +13,12 @@ export default new Vuex.Store({
     setpermission(state, payload) {
       state.permission = payload.permission;
     },
+    checkpermission(state) {
+      if (state.permission === "User") {
+        return true;
+      }
+      return false;
+    },
   },
   actions: {},
   modules: {},
