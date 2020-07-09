@@ -17,6 +17,7 @@
 }
 </style>
 <script>
+import axios from "axios";
 export default {
   props: {
     partyName: String,
@@ -24,7 +25,9 @@ export default {
   },
   methods: {
     vote: function() {
+      console.log(this.partyName);
       if (this.$store.commit({ type: "checkpermission" })) {
+        axios.patch("http://localhost/8081/vote");
         alert("Thank you for voted");
       }
       alert("Please login before select the Party");

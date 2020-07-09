@@ -11,7 +11,7 @@
       <div class="fifty-percen text-header-login">Password</div>
       <input v-model="id" type="text" />
       <input v-model="password" type="password" />
-      <button class="btn">Log in</button>
+      <button class="btn" @click="login">Log in</button>
     </div>
     <div
       class="flex-container"
@@ -51,12 +51,25 @@ input {
 }
 </style>
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       id: "",
-      password: ""
+      password: "",
+      username: ""
     };
+  },
+  methods: {
+    login: async function() {
+      if (this.id !== "" && this.password !== "") {
+        const data = await axios.get("http://localhost:8081/login", {
+          id: this.id,
+          password: this.password
+        });
+        this.username = data;
+      }
+    }
   },
   name: "navbar"
 };
