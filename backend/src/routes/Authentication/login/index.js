@@ -1,20 +1,19 @@
 const express = require("express");
 const login = express.Router();
-const dbConnection = require("../../../db");
+const { login } = require("../../../service/user");
+
 login.post("/", async (req, res) => {
   const { username, password } = req.body;
-  const sql = `SELECT Role,username FROM users WHERE username = ? AND password = ?`;
   try {
-    const [data] = await dbConnection.execute(sql, [username, password]);
+    const data = login(username, password);
+    res.status(200).send(data);
   } catch (error) {
-    console.log(error.message);
+    if (error === "Login Fail") {
+      res.status(401).send(error);
+    } else if (error === "Password Incorrect") {
+      res.status(403).send(error);
+    }
   }
-  if (data.length === 0) {
-    res.status(404).send({
-      message: "Login Fail",
-    });
-  }
-  res.send({
-    message: "Login Successful",
-  });
 });
+
+module.exports = login;

@@ -27,7 +27,7 @@ export default {
     vote: function() {
       console.log(this.partyName);
       if (this.$store.commit({ type: "checkpermission" })) {
-        axios.patch("http://localhost/8081/vote");
+        axios.patch("http://localhost:8081/vote");
         alert("Thank you for voted");
       }
       alert("Please login before select the Party");

@@ -62,13 +62,15 @@ export default {
   },
   methods: {
     login: async function() {
+      console.log("awdawd");
       if (this.id !== "" && this.password !== "") {
-        const data = await axios.get("http://localhost:8081/login", {
+        const data = await axios.post("http://localhost:8081/login", {
           id: this.id,
           password: this.password
         });
-        this.username = data;
+        this.username = data.data.data.username;
       }
+      alert("please enter your ID and Password before log in");
     }
   },
   name: "navbar"
