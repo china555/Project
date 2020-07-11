@@ -20,7 +20,7 @@
     >
       <div class="flex-container" style="width:40%">
         <img src="@/assets/user.svg" alt />
-        <div style="margin-top:10px; margin-left:20px">Kittikorn</div>
+        <div style="margin-top:10px; margin-left:20px">{{this.$store.state.username}}</div>
       </div>
       <button class="btn" style="margin-right:20px">Log out</button>
     </div>
@@ -56,18 +56,21 @@ export default {
   data() {
     return {
       id: "",
-      password: "",
-      username: ""
+      password: ""
     };
   },
   methods: {
     login: async function() {
       console.log("awdawd");
       if (this.id !== "" && this.password !== "") {
-        const data = await axios.post("http://localhost:8081/login", {
-          id: this.id,
-          password: this.password
-        });
+        const { data, status } = await axios.post(
+          "http://localhost:8081/login",
+          {
+            id: this.id,
+            password: this.password
+          }
+        );
+        console.log(data, status);
         this.username = data.data.data.username;
       }
       alert("please enter your ID and Password before log in");

@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    username: "adawdawd",
     permission: "Guest",
-    userID: "",
     token: "",
   },
   mutations: {
@@ -18,6 +18,9 @@ export default new Vuex.Store({
         return true;
       }
       return false;
+    },
+    setusername(state, payload) {
+      state.username = payload.username;
     },
   },
   actions: {},
