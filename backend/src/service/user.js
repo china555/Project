@@ -1,20 +1,18 @@
-const dbconnection = require("../db");
-function login(username, password) {
-    const sql = `SELECT Role,username,password FROM users WHERE username = $1 AND password = $2`;
-    const { rows } = await dbConnection.query(sql, [username, password]);
-    if(rows.password !== password){
-        throw new Error('Password Incorrect')
-    }
-    if (rows.length === 0) {
-     throw new Error('Login Fail')
-    }
-    return {msg:'Login succcessful',data:rows[0]}
+const db = require("../db");
+async function userLogin(id, password) {
+  const sql = `SELECT user_id,role,username,password FROM users WHERE user_id = $1`;
+  const { rows } = await db.query(sql, [id]);
+  if (rows.length === 0) {
+    throw new Error("Login Fail");
+  } else if (rows[0].password != password) {
+    throw new Error("Password Incorrect");
+  }
+
+  return { msg: "Login succcessful", data: rows[0] };
 }
 
-function voted(){
-    
-}
-module.exports ={
-    login,
-    voted
-}
+function voted() {}
+module.exports = {
+  userLogin,
+  voted,
+};
