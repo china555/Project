@@ -1,16 +1,17 @@
 const express = require("express");
 const login = express.Router();
-const { login } = require("../../../service/user");
+const { userLogin } = require("../../../service/user");
 
 login.post("/", async (req, res) => {
-  const { username, password } = req.body;
+  const { id, password } = req.body;
   try {
-    const data = login(username, password);
+    const data = await userLogin(id, password);
     res.status(200).send(data);
   } catch (error) {
-    if (error === "Login Fail") {
+    if (String(error) === "Error: Login Fail") {
       res.status(401).send(error);
-    } else if (error === "Password Incorrect") {
+    } else if (String(error) === "Error: Password Incorrect") {
+      console.log("wadawdwdaawd");
       res.status(403).send(error);
     }
   }
