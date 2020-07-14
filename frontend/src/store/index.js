@@ -5,22 +5,20 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    username: "adawdawd",
+    username: "",
     permission: "Guest",
-    token: "",
+    voted: false,
   },
   mutations: {
     setpermission(state, payload) {
+      console.log(payload);
       state.permission = payload.permission;
-    },
-    checkpermission(state) {
-      if (state.permission === "User") {
-        return true;
-      }
-      return false;
     },
     setusername(state, payload) {
       state.username = payload.username;
+    },
+    setvoted(state, payload) {
+      state.voted = payload.voted;
     },
   },
   actions: {},

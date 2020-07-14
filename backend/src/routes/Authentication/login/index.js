@@ -1,6 +1,6 @@
 const express = require("express");
 const login = express.Router();
-const { userLogin } = require("../../../service/user");
+const { userLogin } = require("../../../service/User/user");
 
 login.post("/", async (req, res) => {
   const { id, password } = req.body;

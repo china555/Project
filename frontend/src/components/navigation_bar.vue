@@ -63,17 +63,35 @@ export default {
     login: async function() {
       console.log("awdawd");
       if (this.id !== "" && this.password !== "") {
-        const { data, status } = await axios.post(
-          "http://localhost:8081/login",
-          {
+        try {
+          const { data } = await axios.post("http://localhost:8081/login", {
             id: this.id,
             password: this.password
-          }
-        );
-        console.log(data, status);
-        this.username = data.data.data.username;
+          });
+          console.log(data);
+          this.$store.commit({
+            type: "setpermission",
+            permission: data.payload.role
+          });
+          this.$store.commit({
+            type: "setusername",
+            username: data.payload.username
+          });
+          this.$store.commit({
+            type: "setvoted",
+            voted: data.payload.voted
+          });
+          localStorage.setItem("token", data.token);
+        } catch (error) {
+          alert(
+            "Wrong username or password please cheecking and try again later"
+          );
+          this.id = "";
+          this.password = "";
+        }
+      } else {
+        alert("please enter your ID and Password before log in");
       }
-      alert("please enter your ID and Password before log in");
     }
   },
   name: "navbar"

@@ -26,11 +26,21 @@ export default {
   methods: {
     vote: function() {
       console.log(this.partyName);
-      if (this.$store.commit({ type: "checkpermission" })) {
-        axios.patch("http://localhost:8081/vote");
-        alert("Thank you for voted");
+      if (this.$store.state.permission === "User") {
+        if (this.$store.state.voted === false) {
+          const token = localStorage.getItem("token");
+          console.log(token);
+          axios.patch("http://localhost:8081/vote", {
+            token: token,
+            username: this.$store.state.username
+          });
+          alert("Thank you for voted");
+        } else {
+          alert("you have been voted already");
+        }
+      } else {
+        alert("Please login before select the Party");
       }
-      alert("Please login before select the Party");
     }
   }
 };
