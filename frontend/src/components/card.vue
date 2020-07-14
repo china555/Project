@@ -32,7 +32,8 @@ export default {
           console.log(token);
           axios.patch("http://localhost:8081/vote", {
             token: token,
-            username: this.$store.state.username
+            username: this.$store.state.username,
+            this.partyName
           });
           alert("Thank you for voted");
         } else {
