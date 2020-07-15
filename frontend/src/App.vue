@@ -2,8 +2,12 @@
   <div>
     <navbar2 />
     <div class="grid-container" style="margin-top:50px;">
-      <card partyName="อนาคตมืด" partyDiscription="ซื้อเรือดำน้ำ" />
-      <card partyName="อนาคตใหม่" partyDiscription="บลาๆๆๆ" />
+      <card
+        v-for="({name,score},index) in this.parties "
+        :key="`-${index}`"
+        :partyName="name"
+        :score="score"
+      ></card>
     </div>
   </div>
 </template>
@@ -47,10 +51,20 @@ body {
 // import navbar2 from "@/components/navigation_bar.vue";
 import navbar2 from "./components/navigation_bar.vue";
 import card from "./components/card.vue";
+import axios from "axios";
 export default {
+  data() {
+    return {
+      parties: []
+    };
+  },
   components: {
     navbar2,
     card
+  },
+  async created() {
+    const { data } = await axios.get("http://localhost:8081/getparty");
+    this.parties = data;
   }
 };
 </script>

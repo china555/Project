@@ -1,10 +1,11 @@
 const express = require("express");
 const vote = express.Router();
+const { voteparty } = require("../../service/Vote/vote");
 
 vote.patch("/", async (req, res) => {
-  const { token, username } = req.body;
+  const { token, partyName } = req.body;
   try {
-    const data = await voteparty(token, username);
+    await voteparty(token, partyName);
     res.status(200).send(data);
   } catch (error) {}
 });

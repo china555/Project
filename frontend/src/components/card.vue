@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="party-name">{{partyName}}</div>
-    <div>Discription:{{partyDiscription}}</div>
+    <div style="font-size: 30px">{{score}}</div>
     <button class="btn" @click="vote()">Vote</button>
   </div>
 </template>
@@ -21,20 +21,19 @@ import axios from "axios";
 export default {
   props: {
     partyName: String,
-    partyDiscription: String
+    score: Number
   },
   methods: {
     vote: function() {
-      console.log(this.partyName);
       if (this.$store.state.permission === "User") {
         if (this.$store.state.voted === false) {
           const token = localStorage.getItem("token");
           console.log(token);
           axios.patch("http://localhost:8081/vote", {
             token: token,
-            username: this.$store.state.username,
-            this.partyName
+            partyName: this.partyName
           });
+          // this.$store.state.voted = true;
           alert("Thank you for voted");
         } else {
           alert("you have been voted already");

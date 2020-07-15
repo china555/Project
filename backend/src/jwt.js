@@ -11,7 +11,7 @@ const verify = (authorization) => {
       const token = authorization.replace("Bearer ", "");
       jwt.verify(token, secret);
       const userInfo = jwt.decode(token);
-      return { isValid: true, ...userInfo };
+      return { isValid: true, userInfo };
     }
   } catch (e) {
     return { isValid: false };
