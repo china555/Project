@@ -4,7 +4,6 @@ const getparty = require("../../service/Party/index");
 party.get("/", async (req, res) => {
   try {
     const data = await getparty();
-    console.log(data);
     res.status(200).send(data);
   } catch (error) {
     if (String(error) === "Error: Sorry don't have any party to select") {
