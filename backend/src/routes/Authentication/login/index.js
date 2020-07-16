@@ -3,9 +3,9 @@ const login = express.Router();
 const { userLogin } = require("../../../service/User/user");
 
 login.post("/", async (req, res) => {
-  const { id, password } = req.body;
+  const { username, password } = req.body;
   try {
-    const data = await userLogin(id, password);
+    const data = await userLogin(username, password);
     res.status(200).send(data);
   } catch (error) {
     if (String(error) === "Error: Login Fail") {
