@@ -7,9 +7,9 @@
       style="width:600px; justify-content: space-around;"
       v-if="this.$store.state.permission === 'Guest'"
     >
-      <div class="text-header-login" style="margin-right:120px;">ID Number</div>
+      <div class="text-header-login" style="margin-right:120px;">Username</div>
       <div class="fifty-percen text-header-login">Password</div>
-      <input v-model="id" type="text" />
+      <input v-model="username" type="text" />
       <input v-model="password" type="password" />
       <button class="btn" @click="login">Log in</button>
     </div>
@@ -22,7 +22,7 @@
         <img src="@/assets/user.svg" alt />
         <div style="margin-top:10px; margin-left:20px">{{this.$store.state.username}}</div>
       </div>
-      <button class="btn" style="margin-right:20px">Log out</button>
+      <button class="btn" style="margin-right:20px" @click="logout">Log out</button>
     </div>
   </div>
 </template>
@@ -55,20 +55,18 @@ import axios from "axios";
 export default {
   data() {
     return {
-      id: "",
+      username: "",
       password: ""
     };
   },
   methods: {
     login: async function() {
-      console.log("awdawd");
-      if (this.id !== "" && this.password !== "") {
+      if (this.username !== "" && this.password !== "") {
         try {
           const { data } = await axios.post("http://localhost:8081/login", {
-            id: this.id,
+            username: this.username,
             password: this.password
           });
-          console.log(data);
           this.$store.commit({
             type: "setpermission",
             permission: data.payload.role
@@ -86,12 +84,16 @@ export default {
           alert(
             "Wrong username or password please cheecking and try again later"
           );
-          this.id = "";
-          this.password = "";
         }
       } else {
         alert("please enter your ID and Password before log in");
       }
+      this.id = "";
+      this.password = "";
+    },
+    logout: async function() {
+      localStorage.clear();
+      this.$store.state.permission = "Guest";
     }
   },
   name: "navbar"

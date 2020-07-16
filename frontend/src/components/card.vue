@@ -28,7 +28,6 @@ export default {
       if (this.$store.state.permission === "User") {
         if (this.$store.state.voted === false) {
           const token = localStorage.getItem("token");
-          console.log(token);
           axios.patch("http://localhost:8081/vote", {
             token: token,
             partyName: this.partyName

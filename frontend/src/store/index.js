@@ -11,7 +11,6 @@ export default new Vuex.Store({
   },
   mutations: {
     setpermission(state, payload) {
-      console.log(payload);
       state.permission = payload.permission;
     },
     setusername(state, payload) {
