@@ -7,7 +7,6 @@ async function getparty() {
   if (rows.length === 0) {
     throw new Error("Sorry don't have any party to select");
   }
-  console.log("12323");
   return rows;
 }
 
