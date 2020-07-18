@@ -6,6 +6,7 @@ const bodyParse = require("body-parser");
 const login = require("./routes/Authentication/login/index");
 const vote = require("./routes/Vote/index");
 const party = require("./routes/Party/index");
+const register = require("./routes/Authentication/register/index");
 dotenv.config();
 app.use(
   express.urlencoded({
@@ -14,6 +15,7 @@ app.use(
 );
 app.use(cors());
 app.use(bodyParse.json());
+app.use("/register", register);
 app.use("/getparty", party);
 app.use("/login", login);
 app.use("/vote", vote);
