@@ -1,14 +1,6 @@
 <template>
   <div>
-    <navbar2 />
-    <div class="grid-container" style="margin-top:50px;">
-      <card
-        v-for="({name,score},index) in this.parties "
-        :key="`-${index}`"
-        :partyName="name"
-        :score="score"
-      ></card>
-    </div>
+    <router-view />
   </div>
 </template>
 
@@ -48,23 +40,4 @@ body {
 </style>
 
 <script>
-// import navbar2 from "@/components/navigation_bar.vue";
-import navbar2 from "./components/navigation_bar.vue";
-import card from "./components/card.vue";
-import axios from "axios";
-export default {
-  data() {
-    return {
-      parties: []
-    };
-  },
-  components: {
-    navbar2,
-    card
-  },
-  async created() {
-    const { data } = await axios.get("http://localhost:8081/getparty");
-    this.parties = data;
-  }
-};
 </script>

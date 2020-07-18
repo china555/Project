@@ -8,10 +8,13 @@
       v-if="this.$store.state.permission === 'Guest'"
     >
       <div class="text-header-login" style="margin-right:120px;">Username</div>
-      <div class="fifty-percen text-header-login">Password</div>
+      <div class="fifty-percen text-header-login" style="padding-right:80px">Password</div>
       <input v-model="username" type="text" />
       <input v-model="password" type="password" />
       <button class="btn" @click="login">Log in</button>
+      <router-link to="/register">
+        <button class="btn">Register</button>
+      </router-link>
     </div>
     <div
       class="flex-container"
@@ -88,7 +91,6 @@ export default {
       } else {
         alert("please enter your ID and Password before log in");
       }
-      this.id = "";
       this.password = "";
     },
     logout: async function() {
