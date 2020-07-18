@@ -7,4 +7,4 @@ const dbconfig = new Pool({
   user: process.env.DB_USER, // Username of database user
   password: process.env.Password, // Password of database user
 });
-module.exports = dbconfig;
+module.exports = dbconfig; //
