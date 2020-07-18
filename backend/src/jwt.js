@@ -26,6 +26,7 @@ const decode = (token) => jwt.decode(token);
 // );
 
 // console.log(older_token);
+//jwt
 
 module.exports = {
   sign,
