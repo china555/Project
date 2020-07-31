@@ -89,7 +89,7 @@ export default {
           );
         }
       } else {
-        alert("please enter your ID and Password before log in");
+        alert("please enter your username and Password before log in");
       }
       this.password = "";
     },
